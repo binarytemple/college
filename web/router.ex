@@ -17,6 +17,13 @@ defmodule College.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    resources "/users", UserController
+    resources "/artefacts", ArtefactController
+    resources "/courses", CourseController
+    resources "/exhibitions", ExhibitionController
+    resources "/exhibitions_users", ExhibitionUserController
+
   end
 
   # Other scopes may use custom stacks.
