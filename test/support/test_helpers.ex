@@ -1,6 +1,6 @@
 defmodule College.TestHelpers do
 
-alias College.Repo
+    alias College.Repo
 
     def insert_user(attrs \\ %{}) do
         changes = Dict.merge(%{
@@ -17,7 +17,7 @@ alias College.Repo
         }, attrs)
     %College.User{}
         |> College.User.changeset(changes)
-        |> College.insert!()
+        |> College.Repo.insert!()
     end
 
     #def insert_video(user, attrs \\ %{}) do user
