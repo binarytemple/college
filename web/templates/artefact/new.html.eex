@@ -1,0 +1,6 @@
+<h2>New artefact</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: artefact_path(@conn, :create) %>
+
+<%= link "Back", to: artefact_path(@conn, :index) %>

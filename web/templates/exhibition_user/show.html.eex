@@ -1,0 +1,28 @@
+<h2>Show exhibition user</h2>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @exhibition_user.user_id %>
+  </li>
+
+  <li>
+    <strong>Exhibition:</strong>
+    <%= @exhibition_user.exhibition_id %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @exhibition_user.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @exhibition_user.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: exhibition_user_path(@conn, :edit, @exhibition_user) %>
+<%= link "Back", to: exhibition_user_path(@conn, :index) %>

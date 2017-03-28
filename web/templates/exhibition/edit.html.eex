@@ -1,0 +1,6 @@
+<h2>Edit exhibition</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: exhibition_path(@conn, :update, @exhibition) %>
+
+<%= link "Back", to: exhibition_path(@conn, :index) %>

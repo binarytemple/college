@@ -18,11 +18,12 @@ defmodule College.Router do
 
     get "/", PageController, :index
 
-    resources "/users", UserController
-    resources "/artefacts", ArtefactController
-    resources "/courses", CourseController
-    resources "/exhibitions", ExhibitionController
-    resources "/exhibitions_users", ExhibitionUserController
+      resources "/users", UserController
+      resources "/artefacts", ArtefactController
+      resources "/courses", CourseController
+      resources "/user_courses", UserCourseController
+      resources "/exhibitions", ExhibitionController
+      resources "/exhibitions_users", ExhibitionUserController
 
   end
 

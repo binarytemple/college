@@ -1,0 +1,18 @@
+<h2>Show user course</h2>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @user_course.user_id %>
+  </li>
+
+  <li>
+    <strong>Course:</strong>
+    <%= @user_course.course_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: user_course_path(@conn, :edit, @user_course) %>
+<%= link "Back", to: user_course_path(@conn, :index) %>

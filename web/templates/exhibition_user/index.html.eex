@@ -1,0 +1,32 @@
+<h2>Listing exhibitions users</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Exhibition</th>
+      <th>Title</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for exhibition_user <- @exhibitions_users do %>
+    <tr>
+      <td><%= exhibition_user.user_id %></td>
+      <td><%= exhibition_user.exhibition_id %></td>
+      <td><%= exhibition_user.title %></td>
+      <td><%= exhibition_user.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: exhibition_user_path(@conn, :show, exhibition_user), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: exhibition_user_path(@conn, :edit, exhibition_user), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: exhibition_user_path(@conn, :delete, exhibition_user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New exhibition user", to: exhibition_user_path(@conn, :new) %>

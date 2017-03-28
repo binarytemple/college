@@ -1,0 +1,28 @@
+<h2>Listing exhibitions</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for exhibition <- @exhibitions do %>
+    <tr>
+      <td><%= exhibition.title %></td>
+      <td><%= exhibition.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: exhibition_path(@conn, :show, exhibition), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: exhibition_path(@conn, :edit, exhibition), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: exhibition_path(@conn, :delete, exhibition), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New exhibition", to: exhibition_path(@conn, :new) %>

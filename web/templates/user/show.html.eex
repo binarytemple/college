@@ -1,0 +1,43 @@
+<h2>Show user</h2>
+
+<ul>
+
+  <li>
+    <strong>Is student:</strong>
+    <%= @user.is_student %>
+  </li>
+
+  <li>
+    <strong>Salutation:</strong>
+    <%= @user.salutation %>
+  </li>
+
+  <li>
+    <strong>Forname:</strong>
+    <%= @user.forname %>
+  </li>
+
+  <li>
+    <strong>Surname:</strong>
+    <%= @user.surname %>
+  </li>
+
+  <li>
+    <strong>Age:</strong>
+    <%= @user.age %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @user.location %>
+  </li>
+
+  <li>
+    <strong>Photo:</strong>
+    <%= @user.photo %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: user_path(@conn, :edit, @user) %>
+<%= link "Back", to: user_path(@conn, :index) %>

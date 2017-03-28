@@ -1,0 +1,28 @@
+<h2>Show artefact</h2>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @artefact.user_id %>
+  </li>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @artefact.url %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @artefact.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @artefact.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: artefact_path(@conn, :edit, @artefact) %>
+<%= link "Back", to: artefact_path(@conn, :index) %>

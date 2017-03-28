@@ -1,0 +1,28 @@
+<h2>Listing user courses</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Course</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user_course <- @user_courses do %>
+    <tr>
+      <td><%= user_course.user_id %></td>
+      <td><%= user_course.course_id %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: user_course_path(@conn, :show, user_course), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: user_course_path(@conn, :edit, user_course), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: user_course_path(@conn, :delete, user_course), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New user course", to: user_course_path(@conn, :new) %>

@@ -1,0 +1,32 @@
+<h2>Listing artefacts</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Url</th>
+      <th>Title</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for artefact <- @artefacts do %>
+    <tr>
+      <td><%= artefact.user_id %></td>
+      <td><%= artefact.url %></td>
+      <td><%= artefact.title %></td>
+      <td><%= artefact.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: artefact_path(@conn, :show, artefact), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: artefact_path(@conn, :edit, artefact), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: artefact_path(@conn, :delete, artefact), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New artefact", to: artefact_path(@conn, :new) %>

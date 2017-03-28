@@ -1,0 +1,18 @@
+<h2>Show exhibition</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @exhibition.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @exhibition.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: exhibition_path(@conn, :edit, @exhibition) %>
+<%= link "Back", to: exhibition_path(@conn, :index) %>
