@@ -17,8 +17,6 @@ defmodule College.UserCourseController do
 
   def create(conn,
      user_course = %{  "user_course" =>  %{"course_id" => course_id , "user_id" => user_id} } ) do
-
-
     changeset = UserCourse.changeset(%UserCourse{}, %{course_id: course_id , user_id: user_id} )
     Logger.warn("user_course_params #{inspect(user_course)}")
     case Repo.insert(changeset) do
@@ -31,11 +29,11 @@ defmodule College.UserCourseController do
     end
   end
 
-  def create(conn, _params) do
-    Logger.warn("_params #{inspect(_params)}")
-    changeset = UserCourse.changeset(%UserCourse{})
-    render(conn, "new.html", changeset: changeset)
-  end
+  #def create(conn, _params) do
+  #  Logger.warn("_params #{inspect(_params)}")
+  #  changeset = UserCourse.changeset(%UserCourse{})
+  #  render(conn, "new.html", changeset: changeset)
+  #end
 
   def show(conn, %{"id" => id}) do
     user_course = Repo.get!(UserCourse, id)

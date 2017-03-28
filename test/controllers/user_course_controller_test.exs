@@ -2,7 +2,7 @@ defmodule College.UserCourseControllerTest do
   use College.ConnCase
 
   alias College.UserCourse
-  @valid_attrs %{}
+  @valid_attrs %{user_id: 1, course_id: 1}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
