@@ -1,0 +1,8 @@
+#:code.add_path('/binarytemple/college/_build/test/lib/college/ebin/')
+
+#%{:id => course_id} = College.TestHelpers.insert_course
+#%{:id => user_id} = College.TestHelpers.insert_user
+
+College.Helpers.insert_user_course(College.Helpers.insert_user ,College.Helpers.insert_course)
+
+
