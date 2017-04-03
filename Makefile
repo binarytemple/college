@@ -1,5 +1,5 @@
 drop_tables:
-	psql -d college_dev < ./sql.commands.drop.tables.txt
+	psql -d college_dev < ./drop_schema.sql
 
 migrate:
 	mix ecto.migrate
