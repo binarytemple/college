@@ -46,4 +46,22 @@ defmodule College.Helpers do
         |> Repo.insert!()
     end
 
+    def search_username(search_term, threshold \\ 0.3, limit \\ 10) do
+      res = Repo.query(
+			"""
+			SELECT salutation, forname, surname, dob_y, dob_m, dob_d, fulltext_name <-> $1 AS dist FROM users ORDER BY dist ASC LIMIT $2
+			""", [search_term, limit] )
+
+      case res do
+      {:ok, %Postgrex.Result{:rows => rows}} -> rows
+      end
+
+
+
+
+
+
+       
+    end
+
 end

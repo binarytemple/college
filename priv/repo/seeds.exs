@@ -13,6 +13,24 @@
 import Ecto
 import Ecto.Changeset
 import Ecto.Query
-College.Repo.insert!(%College.User{age: 25, forname: "James", is_student: true, location: "dublin", photo: nil, salutation: nil, surname: "Brown"})
+
+
+people = [ {"mr","james","dean"}, {"miss", "riva","siconni"}, {"mrs", "laura","hepburn"} ]
+
+for {t,f,s} <- people do 
+  College.Repo.insert!(%College.User{
+    dob_y: :crypto.rand_uniform(1990,1996),
+    dob_m: :crypto.rand_uniform(1,13),
+    dob_d: :crypto.rand_uniform(1,28),
+    salutation: t,
+    forname: f,
+    surname: s, 
+    fulltext_name: "#{t} #{f} #{s}",
+    is_student: true, 
+    location: "dublin", 
+    photo: nil})
+ end
+
+
 College.Repo.all(from College.User)
 Enum.map(College.Repo.all(from College.User), fn(u) ->  College.Repo.insert(%College.Artefact{user: u , title: u.forname <> Integer.to_string( elem( DateTime.utc_now.microsecond,0) ) <> u.surname }) end) 

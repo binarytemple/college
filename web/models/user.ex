@@ -6,9 +6,13 @@ defmodule College.User do
     field :salutation, :string
     field :forname, :string
     field :surname, :string
-    field :age, :integer
+    field :dob_y, :integer
+    field :dob_m, :integer
+    field :dob_d, :integer
+    field :fulltext_name, :string
     field :location, :string
     field :photo, :string
+    field :dist, :float, virtual: true
 
     timestamps()
   end
@@ -19,6 +23,6 @@ defmodule College.User do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:is_student, :salutation, :forname, :surname, :age, :location, :photo])
-    |> validate_required([:is_student, :salutation, :forname, :surname, :age, :location, :photo])
+    |> validate_required([:is_student, :salutation, :forname, :surname ])
   end
 end
