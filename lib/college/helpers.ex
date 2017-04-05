@@ -4,6 +4,7 @@ defmodule College.Helpers do
     alias College.User
     alias College.Course
     alias College.UserCourse
+    import Ecto.Query
 
     def insert_user(attrs \\ %{}) do
         changes = Dict.merge(%{
@@ -46,20 +47,26 @@ defmodule College.Helpers do
         |> Repo.insert!()
     end
 
-    def search_username(search_term, threshold \\ 0.3, limit \\ 10) do
-      res = Repo.query(
-			"""
-			SELECT salutation, forname, surname, dob_y, dob_m, dob_d, fulltext_name <-> $1 AS dist FROM users ORDER BY dist ASC LIMIT $2
-			""", [search_term, limit] )
+    def search_user(name, threshold \\ 0.09, limit \\ 10) do
+      #res = Repo.query(
+      #"""
+      #SELECT salutation, forname, surname, dob_y, dob_m, dob_d, fulltext_name <-> $1 AS dist FROM users ORDER BY dist ASC LIMIT $2
+      #""", [search_term, limit] )
+      #Repo.all(from(u in User, order_by: fragment("similarity(fulltext_name,?) DESC",^name), limit: limit ))
+      Repo.all(
+              from(u in User, 
+                  where: not(is_nil(u.fulltext_name)),
+                  where: fragment("similarity(fulltext_name,?) > ?", ^name,^threshold),  
+                  order_by: fragment("similarity(fulltext_name,?) DESC",^name),  
+                  limit: ^limit)
+            )
 
-      case res do
-      {:ok, %Postgrex.Result{:rows => rows}} -> rows
-      end
-
-
-
-
-
+#Repo.all(from(u in User, where: fragment("similarity(fulltext_name,?) < ?", ^name,0.9),  order_by: fragment("similarity(fulltext_name,?) DESC",^name), limit: 10 ))
+#
+#
+#      case res do
+#      {:ok, %Postgrex.Result{:rows => rows}} -> rows
+#      end
 
        
     end
