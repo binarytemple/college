@@ -14,6 +14,7 @@ defmodule College.ArtefactController do
   end
 
   def create(conn, %{"artefact" => artefact_params}) do
+IO.inspect artefact_params
     changeset = Artefact.changeset(%Artefact{}, artefact_params)
 
     case Repo.insert(changeset) do

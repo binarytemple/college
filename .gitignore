@@ -26,3 +26,4 @@ erl_crash.dump
 .idea/workspace.xml
 
 web/models/.#course.ex
+uploads
