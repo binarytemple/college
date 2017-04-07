@@ -2,7 +2,8 @@ defmodule College.Repo.Migrations.CreateArtefact do
   use Ecto.Migration
 
   def change do
-    create table(:artefacts) do
+    create table(:artefacts , primary_key: false  ) do
+      add :id, :uuid, primary_key: true
       add :url, :string
       add :title, :string
       add :description, :text

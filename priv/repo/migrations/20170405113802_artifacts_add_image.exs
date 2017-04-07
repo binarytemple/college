@@ -5,6 +5,7 @@ defmodule College.Repo.Migrations.ArtifactsAddImage do
 
     alter table(:artefacts) do
       add :image, :string
+      add :original_filename, :string
     end
 
   end
