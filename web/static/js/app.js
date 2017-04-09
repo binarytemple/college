@@ -11,7 +11,7 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import "phoenix_html"
+import "phoenix_html";
 
 // Import local files
 //
@@ -19,3 +19,38 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+//import "jquery"
+
+//global.jQuery = require('jquery');
+require('jquery');
+
+require('jquery-ui');
+
+
+require('jquery-ui/ui/widgets/datepicker.js');
+
+import "bootstrap";
+//
+//import "jquery-ui";
+//
+//import "jquery-ui";
+//require "jquery-ui-dist";
+
+//global.jQuery = require('jquery');
+//global.$ = global.jQuery;
+
+//require("jquery");
+
+//require('bootstrap');
+
+// import "jquery-ui";
+
+//$( function(){
+//  $("#user_dob").datepicker({ dateFormat: 'yy-mm-dd' } );
+//});
+
+
+//useful way to verify the js has loaded
+//console.log('Hello, lola')
+

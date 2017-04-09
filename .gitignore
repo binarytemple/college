@@ -27,3 +27,4 @@ erl_crash.dump
 
 web/models/.#course.ex
 uploads
+.DS_Store
