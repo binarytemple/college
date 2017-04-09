@@ -8,11 +8,10 @@ defmodule College.UserSearchController do
     render(conn, "index.json", users: users)
   end
 
-  def show(conn, %{"q" => q}) do
-    users = Repo.all(User)
+  def search(conn, %{"q" => q}) do
+    users = College.Helpers.search_user(q)
     render(conn, "index.json", users: users)
   end
-
 
   #def create(conn, %{"user_search" => user_search_params}) do
   #  changeset = UserSearch.changeset(%UserSearch{}, user_search_params)

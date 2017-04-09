@@ -47,7 +47,7 @@ defmodule College.Helpers do
         |> Repo.insert!()
     end
 
-    def search_user(name, threshold \\ 0.09, limit \\ 10) do
+    def search_user(name, threshold \\ 0.15, limit \\ 10) do
       #res = Repo.query(
       #"""
       #SELECT salutation, forname, surname, dob_y, dob_m, dob_d, fulltext_name <-> $1 AS dist FROM users ORDER BY dist ASC LIMIT $2
