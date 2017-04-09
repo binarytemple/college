@@ -8,11 +8,6 @@
   </li>
 
   <li>
-    <strong>Url:</strong>
-    <%= @artefact.url %>
-  </li>
-
-  <li>
     <strong>Title:</strong>
     <%= @artefact.title %>
   </li>
@@ -21,6 +16,14 @@
     <strong>Description:</strong>
     <%= @artefact.description %>
   </li>
+
+   <li>
+    <strong>Image</strong>
+    <img src="<%= College.Image.url({@artefact.image, @artefact}) %>"/> 
+
+   </li>
+
+
 
 </ul>
 

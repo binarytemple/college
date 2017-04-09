@@ -7,7 +7,6 @@ defmodule College.Artefact do
   @primary_key {:id, :binary_id, autogenerate: false}
 
   schema "artefacts" do
-    field :url, :string
     field :title, :string
     field :description, :string
     field :image, College.Image.Type
@@ -18,7 +17,7 @@ defmodule College.Artefact do
   end
 
   @required ~w(id)a
-  @optional ~w(url, title, description)a
+  @optional ~w(title, description)a
   @required_file_fields ~w(image)a
   @optional_file_fields ~w()a
 
@@ -29,8 +28,11 @@ defmodule College.Artefact do
     case Map.has_key?(params,"id") do
       true  -> build_changeset(struct, params)
       false -> build_changeset(struct, Map.put(params,"id", UUID.uuid4()))
-      #Map.put(params,"original_filename", params.filename ) 
     end 
+
+
+Map.put(params,"original_filename", params.image.filename ) 
+
   end
 
   defp build_changeset(struct, params)  do 

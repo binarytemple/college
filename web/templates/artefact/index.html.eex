@@ -4,10 +4,9 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Url</th>
       <th>Title</th>
       <th>Description</th>
-
+      <th>thumb</th>
       <th></th>
     </tr>
   </thead>
@@ -15,9 +14,10 @@
 <%= for artefact <- @artefacts do %>
     <tr>
       <td><%= artefact.user_id %></td>
-      <td><%= artefact.url %></td>
       <td><%= artefact.title %></td>
       <td><%= artefact.description %></td>
+      <td>  <img src="<%= College.Image.url({artefact.image, artefact},:thumb) %>"/> 
+      </td>
 
       <td class="text-right">
         <%= link "Show", to: artefact_path(@conn, :show, artefact), class: "btn btn-default btn-xs" %>

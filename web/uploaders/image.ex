@@ -4,8 +4,6 @@ defmodule College.Image do
   # Include ecto support (requires package arc_ecto installed):
   use Arc.Ecto.Definition
 
-  @versions [:original]
-
   #not sure if this is necessary
   def __storage, do: Arc.Storage.Local
 
@@ -18,27 +16,28 @@ defmodule College.Image do
   end
 
   # Define a thumbnail transformation:
-  def transform(:thumb, _) do
+  def transform(:thumb, _file) do
      {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
   end
 
   # Override the persisted filenames:
-  #def filename(version, {file,artefact}) do
+  def filename(version, {file,scope}) do
     #   #filename_VERSION = #{inspect(version)}
     #    IO.inspect("filename ... #{inspect(version)} - #{inspect({file,artefact})} ")  
     #   artefact.id
-   # end
+    "#{scope.id}_#{version}_#{file.file_name}"
+  end
 
   ## Override the storage directory:
-  def storage_dir(version, {file, artefact}) do
-  ## IO.inspect("""
-  ## storage_dir_VERSION = #{inspect(version)}
-  ## storage_dir_FILE    = #{inspect(file   )}
-  ## SCOPE   = #{inspect(scope  )}
+  #def storage_dir(version, {file, artefact}) do
+  ### IO.inspect("""
+  ### storage_dir_VERSION = #{inspect(version)}
+  ### storage_dir_FILE    = #{inspect(file   )}
+  ### SCOPE   = #{inspect(scope  )}
 
-  ## """)  
-  "uploads/artefacts/#{artefact.id}"
-  end
+  ### """)  
+  #"uploads/artefacts/#{artefact.id}"
+  #end
 
   # Provide a default URL if there hasn't been a file uploaded
   # def default_url(version, scope) do
