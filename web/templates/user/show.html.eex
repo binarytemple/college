@@ -22,9 +22,9 @@
     <%= @user.surname %>
   </li>
 
-  <li>
-    <strong>Age:</strong>
-    <%= @user.age %>
+  <li> 
+    <strong>DOB :</strong> 
+    <%= @user.dob %> 
   </li>
 
   <li>

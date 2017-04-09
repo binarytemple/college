@@ -7,9 +7,7 @@ defmodule College.Repo.Migrations.CreateUser do
       add :salutation, :string
       add :forname, :string
       add :surname, :string
-      add :dob_y, :integer
-      add :dob_m, :integer
-      add :dob_d, :integer
+      add :dob, :date
       add :location, :string
       add :photo, :string
 

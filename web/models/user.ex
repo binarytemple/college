@@ -6,9 +6,7 @@ defmodule College.User do
     field :salutation, :string
     field :forname, :string
     field :surname, :string
-    field :dob_y, :integer
-    field :dob_m, :integer
-    field :dob_d, :integer
+    field :dob, Ecto.Date
     field :fulltext_name, :string
     field :location, :string
     field :photo, :string
@@ -22,7 +20,7 @@ defmodule College.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:is_student, :salutation, :forname, :surname, :age, :location, :photo])
+    |> cast(params, [:is_student, :salutation, :forname, :surname, :dob, :location, :photo])
     |> validate_required([:is_student, :salutation, :forname, :surname ])
   end
 end

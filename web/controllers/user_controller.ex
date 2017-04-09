@@ -3,6 +3,21 @@ defmodule College.UserController do
 
   alias College.User
 
+
+  plug :load_salutations when action in [:new, :create, :edit, :update]
+
+  defp load_salutations(conn, _) do 
+    #  query = Category |> Category.alphabetical |> Category.names_and_ids
+    #  categories = Repo.all query
+    salutations = [
+      {"Mr"   , "mr"  }   ,
+      {"Mrs"  , "mrs"  }  ,
+      {"Miss" , "miss"  }
+   ]   
+    assign(conn, :salutations, salutations) 
+  end
+
+
   def index(conn, _params) do
     users = Repo.all(User)
     render(conn, "index.html", users: users)

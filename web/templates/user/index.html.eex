@@ -7,7 +7,7 @@
       <th>Salutation</th>
       <th>Forname</th>
       <th>Surname</th>
-      <th>Age</th>
+      <th>DOB</th>
       <th>Location</th>
       <th>Photo</th>
 
@@ -21,7 +21,7 @@
       <td><%= user.salutation %></td>
       <td><%= user.forname %></td>
       <td><%= user.surname %></td>
-      <td><%= user.age %></td>
+      <td><%= user.dob %> </td>
       <td><%= user.location %></td>
       <td><%= user.photo %></td>
 
