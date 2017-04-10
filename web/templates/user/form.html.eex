@@ -29,6 +29,19 @@
     <%= error_tag f, :surname %>
   </div>
 
+
+  <div class="form-group">
+    <%= label f, "Email", class: "control-label" %>
+    <%= email_input f,  :email, class: "form-control" %>
+    <%= error_tag f, :email%>
+  </div>
+
+  <div class="form-group">
+    <%= label f, "Email confirmation", class: "control-label" %>
+    <%= email_input f,  :email_confirmation, class: "form-control" %>
+    <%= error_tag f, :email_confirmation%>
+  </div>
+
   <div class="form-group">
     <%= label f, "Date of birth (yyyy-mm-dd)", class: "control-label" %>
     <%= date_select f,  :dob , year: [options: 1960..2000], class: "form-control" %>

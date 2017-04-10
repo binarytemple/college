@@ -2,7 +2,7 @@ defmodule College.UserController do
   use College.Web, :controller
 
   alias College.User
-
+  require Logger
 
   plug :load_salutations when action in [:new, :create, :edit, :update]
 
@@ -48,6 +48,8 @@ defmodule College.UserController do
 
   def edit(conn, %{"id" => id}) do
     user = Repo.get!(User, id)
+    user = Map.update(user, :email_confirmation, user.email, fn(_) -> user.email end)
+    #Logger.debug("#{inspect(user)}")
     changeset = User.changeset(user)
     render(conn, "edit.html", user: user, changeset: changeset)
   end

@@ -23,6 +23,11 @@
   </li>
 
   <li> 
+    <strong>email:</strong> 
+    <%= @user.email %> 
+  </li>
+
+  <li> 
     <strong>DOB :</strong> 
     <%= @user.dob %> 
   </li>

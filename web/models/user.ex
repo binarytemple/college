@@ -6,6 +6,8 @@ defmodule College.User do
     field :salutation, :string
     field :forname, :string
     field :surname, :string
+    field :email, :string
+    field :email_confirmation, :string, virtual: true
     field :dob, Ecto.Date
     field :fulltext_name, :string
     field :location, :string
@@ -15,12 +17,17 @@ defmodule College.User do
     timestamps()
   end
 
+
+  @optional_fields [:is_student, :salutation, :forname, :surname, :email, :dob, :location, :photo]
+  @required_fields [:is_student, :salutation, :forname, :surname , :email, :dob]
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:is_student, :salutation, :forname, :surname, :dob, :location, :photo])
-    |> validate_required([:is_student, :salutation, :forname, :surname ])
+    |> cast(params,@optional_fields  )
+    |> validate_required(@required_fields)
+    |> unique_constraint(:email)
   end
 end

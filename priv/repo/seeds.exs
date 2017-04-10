@@ -22,6 +22,7 @@ for {t,f,s} <- people do
     salutation: t,
     forname: f,
     surname: s, 
+    email:  Ecto.UUID.generate <> "@" <>   Ecto.UUID.generate <> ".com" ,
     fulltext_name: "#{t} #{f} #{s}",
     is_student: true, 
     location: "dublin", 
