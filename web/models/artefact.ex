@@ -10,13 +10,12 @@ defmodule College.Artefact do
     field :title, :string
     field :description, :string
     field :image, College.Image.Type
-    field :original_filename, :string
     belongs_to :user, College.User
 
     timestamps()
   end
 
-  @required ~w(id)a
+  @required ~w(id image)a
   @optional ~w(title, description)a
   @required_file_fields ~w(image)a
   @optional_file_fields ~w()a
@@ -29,9 +28,6 @@ defmodule College.Artefact do
       true  -> build_changeset(struct, params)
       false -> build_changeset(struct, Map.put(params,"id", UUID.uuid4()))
     end 
-
-
-Map.put(params,"original_filename", params.image.filename ) 
 
   end
 
