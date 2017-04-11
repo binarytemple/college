@@ -29,5 +29,6 @@ defmodule College.User do
     |> cast(params,@optional_fields  )
     |> validate_required(@required_fields)
     |> unique_constraint(:email)
+    |> validate_confirmation(:email, message: "does not match email") 
   end
 end
