@@ -1,6 +1,13 @@
 <h2>Edit artefact</h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: artefact_path(@conn, :update, @artefact) %>
+<%= if assigns[:artefact] do %> 
+<%= render College.ArtefactView, "form.html", changeset: @changeset,
+                        action: artefact_path(@conn, :update, @artefact),
+                        artefact: @artefact  %>
+<% else %>
+<%= render  "form.html", changeset: @changeset,
+                        action: artefact_path(@conn, :update, @artefact)
+                        %>
+<% end %>
 
 <%= link "Back", to: artefact_path(@conn, :index) %>

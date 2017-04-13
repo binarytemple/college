@@ -16,7 +16,7 @@
       <td><%= artefact.user_id %></td>
       <td><%= artefact.title %></td>
       <td><%= artefact.description %></td>
-      <td>  <img src="<%= College.Image.url({artefact.image, artefact},:thumb) %>"/> 
+      <td><img src="<%= College.Image.url({artefact.image, artefact},:mini) %>"/> 
       </td>
 
       <td class="text-right">
