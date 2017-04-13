@@ -8,7 +8,7 @@ defmodule College.Image do
   def __storage, do: Arc.Storage.Local
 
   # To add a thumbnail version:
-  @versions [:original, :thumb]
+  @versions [:original, :thumb, :mini]
 
   # Whitelist file extensions:
   def validate({file, _}) do
@@ -20,24 +20,23 @@ defmodule College.Image do
      {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
   end
 
+  def transform(:mini, _file) do
+     {:convert, "-strip -thumbnail 125x125^ -gravity center -extent 125x125 -format png", :png}
+  end
+
   # Override the persisted filenames:
   def filename(version, {file,scope}) do
-    #   #filename_VERSION = #{inspect(version)}
-    #    IO.inspect("filename ... #{inspect(version)} - #{inspect({file,artefact})} ")  
-    #   artefact.id
-    "#{scope.id}_#{version}_#{file.file_name}"
+    #IO.inspect("filename: #{inspect({version,{_file,scope}})}")
+    case scope do
+      nil -> raise "Unexpected filename request: '#{inspect({version,{file,scope}})}'"
+      _ -> "#{scope.id}_#{version}"
+    end
   end
 
   ## Override the storage directory:
-  #def storage_dir(version, {file, artefact}) do
-  ### IO.inspect("""
-  ### storage_dir_VERSION = #{inspect(version)}
-  ### storage_dir_FILE    = #{inspect(file   )}
-  ### SCOPE   = #{inspect(scope  )}
-
-  ### """)  
-  #"uploads/artefacts/#{artefact.id}"
-  #end
+  def storage_dir(_version, {_file, artefact}) do
+    "#{Application.get_env(:college, :upload_dir)}/#{artefact.user_id}"
+  end
 
   # Provide a default URL if there hasn't been a file uploaded
   # def default_url(version, scope) do

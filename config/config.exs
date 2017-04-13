@@ -9,6 +9,9 @@ use Mix.Config
 config :college,
   ecto_repos: [College.Repo]
 
+config :college, 
+  upload_dir: "/tmp/uploads"
+
 # Configures the endpoint
 config :college, College.Endpoint,
   url: [host: "localhost"],

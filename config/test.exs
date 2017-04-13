@@ -6,6 +6,10 @@ config :college, College.Endpoint,
   http: [port: 4001],
   server: false
 
+config :college, 
+  upload_dir: "/tmp/test_uploads"
+
+
 # Print only warnings and errors during test
 config :logger, level: :warn
 

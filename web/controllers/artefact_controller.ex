@@ -13,10 +13,8 @@ defmodule College.ArtefactController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"artefact" => artefact_params}) do
-    #IO.inspect( "params -   #{inspect(artefact_params)} " ) 
-    changeset = Artefact.changeset(%Artefact{}, artefact_params)
-    #IO.inspect(changeset)  
+  def create(conn, %{"artefact" => artefact_params}) do 
+    changeset = Artefact.changeset(%Artefact{}, Map.put(artefact_params,"id", UUID.uuid4()))
     case Repo.insert(changeset) do
       {:ok, _artefact} ->
         conn

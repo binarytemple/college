@@ -15,30 +15,17 @@ defmodule College.Artefact do
     timestamps()
   end
 
-  @required ~w(id image)a
-  @optional ~w(title, description)a
+  @required ~w(id )a
+  @optional ~w(title description)a
   @required_file_fields ~w(image)a
   @optional_file_fields ~w()a
+	@required_for_validation ~w(id image)a
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
-  def changeset(struct, params \\  %{})  do 
-    case Map.has_key?(params,"id") do
-      true  -> build_changeset(struct, params)
-      false -> build_changeset(struct, Map.put(params,"id", UUID.uuid4()))
-    end 
-
-  end
-
-  defp build_changeset(struct, params)  do 
-    IO.inspect( "changeset params -   #{inspect(params)} " ) 
-    
+  def changeset(struct, params \\ %{})  do 
     struct 
-    |> cast(params, @required)
+    |> cast(params, @required, @optional) 
     |> cast_attachments(params, @required_file_fields , @optional_file_fields)
-    |> validate_required(@required)
-    |> IO.inspect
+    |> validate_required(@required_for_validation)
   end 
 
 end

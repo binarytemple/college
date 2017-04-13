@@ -11,7 +11,9 @@ defmodule College.Endpoint do
     at: "/", from: :college, gzip: false, only_matching: ~w(css fonts images js favicon.ico robots.txt)
 
   plug Plug.Static,
-    at: "/uploads", from: Path.expand('./uploads'), gzip: false
+    at: Path.expand( Application.get_env(:college, :upload_dir)), 
+    from: Path.expand( Application.get_env(:college, :upload_dir)) , 
+    gzip: false
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
