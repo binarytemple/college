@@ -12,6 +12,3 @@ migrate_test:
 
 seed:
 	mix run priv/repo/seeds.exs
-
-scafold:
-	./scafold.sh

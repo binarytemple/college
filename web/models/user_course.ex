@@ -23,6 +23,8 @@ defmodule College.UserCourse do
     Logger.warn("#{inspect(params)}" )
     struct
     |> cast(params, @required_fields, @optional_fields)
+    |> foreign_key_constraint(:user_id)
+    |> foreign_key_constraint(:course_id)
     |> validate_required([])
   end
 
