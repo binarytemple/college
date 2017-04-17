@@ -22,4 +22,7 @@
   <component name="ElixirCompilerOptions">
     <useMixCompiler>true</useMixCompiler>
   </component>
+  <component name="ErlangCompilerOptions">
+    <useRebarCompiler>true</useRebarCompiler>
+  </component>
 </project>
