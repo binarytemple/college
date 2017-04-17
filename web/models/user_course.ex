@@ -11,7 +11,7 @@ defmodule College.UserCourse do
  require Logger
 
   @required_fields ~w(user_id course_id)
-  @optional_fields ~w()
+  @optional_fields ~w(id)
   
   @doc """
   Builds a changeset based on the `struct` and `params`.
@@ -20,7 +20,7 @@ defmodule College.UserCourse do
  def changeset(struct, params \\ %{})
 
  def changeset(struct, params ) do # end= %{user_id: _, course_id: _} ) do
-    Logger.warn("#{inspect(params)}" )
+    #Logger.warn("#{inspect(params)}" )
     struct
     |> cast(params, @required_fields, @optional_fields)
     |> foreign_key_constraint(:user_id)

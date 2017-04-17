@@ -54,10 +54,13 @@ defmodule College.UserControllerTest do
   end
 
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    user = Repo.insert!( @valid_attrs_as_user_struct ) 
-    conn = put conn, user_path(conn, :update, user), user: @valid_attrs 
+    user = Repo.insert!(Kernel.struct(%User{},
+        Map.update(@valid_attrs,:dob, :nil, fn(x) -> elem(Ecto.Date.cast(x),1) end )
+    ))
+    conn = put conn, user_path(conn, :update, user), user: @valid_attrs
     assert redirected_to(conn) == user_path(conn, :show, user)
     assert Repo.get_by(User, @valid_attrs)
+    assert true == true
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do

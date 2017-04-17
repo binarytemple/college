@@ -49,7 +49,6 @@ defmodule College.UserCourseController do
   def update(conn, %{"id" => id, "user_course" => user_course_params}) do
     user_course = Repo.get!(UserCourse, id)
     changeset = UserCourse.changeset(user_course, user_course_params)
-
     case Repo.update(changeset) do
       {:ok, user_course} ->
         conn

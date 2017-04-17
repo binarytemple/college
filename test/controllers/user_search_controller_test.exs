@@ -1,7 +1,7 @@
 defmodule College.UserSearchControllerTest do
   use College.ConnCase
 
-  alias College.UserSearch
+#  alias College.UserSearch
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 

@@ -51,39 +51,40 @@ defmodule College.UserCourseControllerTest do
   end
 
   test "shows chosen resource", %{conn: conn} do
-    %UserCourse{user_id: user_id, course_id: course_id} = generate_user_course
-
-    conn = get conn, user_course_path(conn, :show), user_course: %{user_id:  user_id, course_id: course_id }
+    %UserCourse{id: id} = generate_user_course
+    conn = get conn, user_course_path(conn, :show, %UserCourse{id: id })
     assert html_response(conn, 200) =~ "Show user course"
   end
-#
-#  test "renders page not found when id is nonexistent", %{conn: conn} do
-#    assert_error_sent 404, fn ->
-#      get conn, user_course_path(conn, :show, -1)
-#    end
-#  end
-#
-#  test "renders form for editing chosen resource", %{conn: conn} do
-#    user_course = Repo.insert! %UserCourse{}
-#    conn = get conn, user_course_path(conn, :edit, user_course)
-#    assert html_response(conn, 200) =~ "Edit user course"
-#  end
-#
-#  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-#
-#
-#    user_course = Repo.insert! %UserCourse{}
-#    conn = put conn, user_course_path(conn, :update, user_course), user_course: @valid_attrs
-#    assert redirected_to(conn) == user_course_path(conn, :show, user_course)
-#    assert Repo.get_by(UserCourse, @valid_attrs)
-#  end
-#
-#  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-#    user_course = Repo.insert! %UserCourse{}
-#    conn = put conn, user_course_path(conn, :update, user_course), user_course: @invalid_attrs
-#    assert html_response(conn, 200) =~ "Edit user course"
-#  end
-#
+
+  test "renders page not found when id is nonexistent", %{conn: conn} do
+    assert_error_sent 404, fn ->
+      get conn, user_course_path(conn, :show, -1)
+    end
+  end
+
+  test "renders form for editing chosen resource", %{conn: conn} do
+    user_course = Repo.insert! %UserCourse{}
+    conn = get conn, user_course_path(conn, :edit, user_course)
+    assert html_response(conn, 200) =~ "Edit user course"
+  end
+
+  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
+    user_course = generate_user_course()
+    { user,course}  = generate_user_and_course()
+
+    conn = put conn, user_course_path(conn, :update, user_course), id: user_course.id , user_course: %{user_id: user.id ,course_id: course.id }
+    assert redirected_to(conn) == user_course_path(conn, :show, user_course)
+    assert Repo.get_by(UserCourse,
+      %{id: user_course.id , user_id: user.id ,course_id: course.id }
+     )
+  end
+
+  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+    user_course = Repo.insert! %UserCourse{}
+    conn = put conn, user_course_path(conn, :update, user_course), user_course: @invalid_attrs
+    assert html_response(conn, 200) =~ "Edit user course"
+  end
+
   test "deletes chosen resource", %{conn: conn} do
     user_course = Repo.insert! %UserCourse{}
     conn = delete conn, user_course_path(conn, :delete, user_course)
