@@ -14,7 +14,11 @@ import Ecto
 import Ecto.Changeset
 import Ecto.Query
 
-people = [ {"mr","james","dean"}, {"miss", "riva","siconni"}, {"mrs", "laura","hepburn"} ]
+people = [ 
+  {"mr"   , "james" , "dean"}    ,
+  {"miss" , "riva"  , "siconni"} ,
+  {"mrs"  , "laura" , "hepburn"} ,
+]
 
 for {t,f,s} <- people do 
   College.Repo.insert!(%College.User{

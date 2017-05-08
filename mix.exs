@@ -18,8 +18,25 @@ defmodule College.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {College, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :idna, :mimerl, :certifi, :hackney, :httpoison,   :arc, :arc_ecto, :postgrex]]
+     applications: [
+      :phoenix            ,
+      :phoenix_pubsub     ,
+      :phoenix_html       ,
+      :cowboy             ,
+      :logger             ,
+      :gettext            ,
+      :phoenix_ecto       ,
+      :idna               ,
+      :mimerl             ,
+      :certifi            ,
+      :hackney            ,
+      :httpoison          ,
+      :arc                ,
+      :arc_ecto           ,
+      :postgrex           ,
+      :ueberauth          ,
+      :ueberauth_identity ,
+    ]]
   end
 
   # Specifies which paths to compile per environment.
@@ -31,20 +48,24 @@ defmodule College.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-			{:phoenix             , "~> 1.2.1"                                } ,
-			{:phoenix_pubsub      , "~> 1.0"                                  } ,
-			{:phoenix_ecto        , "~> 3.0"                                  } ,
-			{:postgrex            , ">= 0.0.0"                                } ,
-			{:phoenix_html        , "~> 2.6"                                  } ,
-			{:phoenix_live_reload , "~> 1.0"                     , only: :dev } ,
-			{:gettext             , "~> 0.11"                                 } ,
-			{:cowboy              , "~> 1.0"                                  } ,
-			{:arc_ecto            , "~> 0.6.0"                                } ,
-      #{:poison             , "~> 3.1.0"                                } ,
-			{:httpoison           , "~> 0.11.1"                               } ,
-			{:hackney             , "~> 1.7.1"                                } ,
-			{:uuid                , "~> 1.1.7"                                } ,
-
+			{:phoenix             , "~> 1.2.1"               } ,
+			{:phoenix_pubsub      , "~> 1.0"                 } ,
+			{:phoenix_ecto        , "~> 3.0"                 } ,
+			{:postgrex            , ">= 0.0.0"               } ,
+			{:phoenix_html        , "~> 2.6"                 } ,
+			{:phoenix_live_reload , "~> 1.0"     ,only: :dev } ,
+			{:gettext             , "~> 0.11"                } ,
+			{:cowboy              , "~> 1.0"                 } ,
+			{:arc_ecto            , "~> 0.6.0"               } ,
+      #{:poison             , "~> 3.1.0"               } ,
+			{:httpoison           , "~> 0.11.1"              } ,
+			{:hackney             , "~> 1.7.1"               } ,
+			{:uuid                , "~> 1.1.7"               } ,
+      {:ueberauth           , "~> 0.4.0"               } ,
+      {:ueberauth_identity  , "~> 0.2.3"               } ,
+      {:ueberauth_google    , "~> 0.5.0"               } ,
+      {:redbug              , "~> 1.0.0"               } ,
+      #{:mix_test_watch      , "~> 0.3"                                    , only: :text},
    ]
   end
 
