@@ -55,11 +55,11 @@ defmodule College.Web do
       import Plug.Conn
       
       def display_banner?(conn) do
-	case {conn.path_info,  get_session(conn, :current_user)} do
-	    {["auth"|_] , _ } -> false
-	    {_, user} when user != nil  -> false
-	   _  -> true
-	end
+        case {conn.path_info,  get_session(conn, :current_user)} do
+          {["auth"|_] , _ } -> false
+          {_, user} when user != nil  -> false
+          _  -> true
+        end
       end
       
     end
