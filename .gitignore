@@ -29,3 +29,4 @@ web/models/.#course.ex
 uploads
 .DS_Store
 .idea/misc.xml
+.\#*

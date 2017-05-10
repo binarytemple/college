@@ -25,6 +25,41 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :ueberauth, Ueberauth,
+  providers: [
+    identity: { Ueberauth.Strategy.Identity, [
+        callback_methods: ["POST"],
+        uid_field: :email,
+        nickname_field: :email,
+        ] }
+  ]
+
+
+#config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
+#  client_id: System.get_env("FACEBOOK_APP_ID"),
+#  client_secret: System.get_env("FACEBOOK_APP_SECRET"),
+#  redirect_uri: System.get_env("FACEBOOK_REDIRECT_URI")
+#
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+#
+#config :ueberauth, Ueberauth.Strategy.Google.OAuth,
+#  client_id: System.get_env("GOOGLE_CLIENT_ID"),
+#  client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
+#  redirect_uri: System.get_env("GOOGLE_REDIRECT_URI")
+#
+#config :ueberauth, Ueberauth.Strategy.Slack.OAuth,
+#  client_id: System.get_env("SLACK_CLIENT_ID"),
+#  client_secret: System.get_env("SLACK_CLIENT_SECRET")
+#
+#config :ueberauth, Ueberauth.Strategy.Twitter.OAuth,
+#  consumer_key: System.get_env("TWITTER_CONSUMER_KEY"),
+#  consumer_secret: System.get_env("TWITTER_CONSUMER_SECRET")
+
+
+
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
