@@ -36,6 +36,10 @@ defmodule College.Mixfile do
       :postgrex           ,
       :ueberauth          ,
       :ueberauth_identity ,
+      :oauth              ,
+      :ueberauth_facebook ,
+      :ueberauth_google   , 
+      :ueberauth_github   ,
     ]]
   end
 
@@ -65,6 +69,12 @@ defmodule College.Mixfile do
       {:ueberauth_identity  , "~> 0.2.3"               } ,
       {:ueberauth_google    , "~> 0.5.0"               } ,
       {:redbug              , "~> 1.0.0"               } ,
+      {:oauth, github: "tim/erlang-oauth"              } ,
+      {:ueberauth_facebook  , "~> 0.6.0"               } ,
+      {:ueberauth_google    , "~> 0.5.0"               } ,
+      {:ueberauth_github    , "~> 0.4.1"               } ,
+
+
       #{:mix_test_watch      , "~> 0.3"                                    , only: :text},
    ]
   end

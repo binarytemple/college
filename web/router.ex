@@ -2,15 +2,23 @@ defmodule College.Router do
   use College.Web, :router
 
   require Ueberauth
-
+  alias College.UserSession
+  alias College.UserAuthentication
+  
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug UserSession
   end
 
+  pipeline :user_authentication do
+    plug UserAuthentication
+  end
+
+  
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -31,6 +39,10 @@ defmodule College.Router do
   scope "/", College do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
+  end
+
+  scope "/admin", College do
+    pipe_through [:browser, :user_authentication] # Use the default browser stack
     resources "/artefacts", ArtefactController
     resources "/courses", CourseController
     resources "/credentials", CredentialsController

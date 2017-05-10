@@ -31,9 +31,11 @@ config :ueberauth, Ueberauth,
         callback_methods: ["POST"],
         uid_field: :email,
         nickname_field: :email,
-        ] }
+        ] },
+    facebook: { Ueberauth.Strategy.Facebook, [] },
+    github: { Ueberauth.Strategy.Github, [] },
+    google: { Ueberauth.Strategy.Google, [] },
   ]
-
 
 #config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
 #  client_id: System.get_env("FACEBOOK_APP_ID"),
