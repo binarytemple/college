@@ -62,6 +62,10 @@ defmodule College.Web do
         end
       end
       
+      def current_locale(conn) do 
+        Gettext.get_locale(College.Gettext)
+      end
+
     end
   end
 
