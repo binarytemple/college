@@ -9,6 +9,8 @@ use Mix.Config
 config :college,
   ecto_repos: [College.Repo]
 
+config :college, :identity, "college admissions system"
+
 config :college, 
   upload_dir: "/tmp/uploads"
 
