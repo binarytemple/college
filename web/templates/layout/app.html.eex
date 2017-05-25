@@ -15,8 +15,11 @@
 <div class="container">
     <header class="header">
         <nav role="navigation" class="navbar navbar-default">
-            <div class="btn-group" id="dropdown1">
+            <div class="btn-group"">
                 <a href="<%= page_path @conn, :index %>" class="btn btn-default">Home</a>
+
+               </div>
+                <div class="btn-group" id="dropdown1">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                         data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="true">
@@ -63,17 +66,11 @@
     <main role="main">
         <%= render @view_module, @view_template, assigns %>
     </main>
- 
-
     <div id="footer">
        Current locale : <%= current_locale(@conn) %> 
     </div>
 </div> <!-- /container -->
 <script src='<%= static_path(@conn, "/js/app.js") %>'></script>
-
-
-
-
 
 </body>
 </html>

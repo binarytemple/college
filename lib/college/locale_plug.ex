@@ -7,8 +7,9 @@ defmodule College.LocalePlug do
     case conn.params["locale"] ||  get_session(conn, :locale)  ||  extract_req_header(conn)   do
       nil     -> conn
       locale  ->
-        Gettext.put_locale(College.Gettext, locale)
-        conn |> put_session(:locale, locale)
+        dc_locale = String.downcase(locale)
+        Gettext.put_locale(College.Gettext, dc_locale)
+        conn |> put_session(:locale, dc_locale)
     end
   end
 
@@ -23,7 +24,8 @@ defmodule College.LocalePlug do
     Plug.Conn.get_req_header(conn,"accept-language") |>
     List.to_string |>
     String.split(",") |>
-    List.first
+    List.first |> 
+    String.downcase 
   end
 
 end

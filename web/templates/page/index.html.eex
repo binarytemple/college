@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h2><%= gettext "Welcome to %{identity}", identity: "College Web"%></h2>
+  <h2><%= gettext "Welcome to %{identity}", identity: @identity %></h2>
   <%= gettext "%{intro_blurb}", intro_blurb: "This is a web registration system for college admission" %>
   </p>
 </div>

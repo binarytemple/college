@@ -12,8 +12,8 @@ msgstr ""
 
 #: web/templates/page/index.html.eex:3
 msgid "%{intro_blurb}"
-msgstr ""
+msgstr "This is a web registration system for college admission and stuff"
 
 #: web/templates/page/index.html.eex:2
 msgid "Welcome to %{identity}"
-msgstr ""
+msgstr "Howdy, welcome to %{identity}"
