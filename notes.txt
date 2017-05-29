@@ -1,12 +1,9 @@
-
 %Auth{credentials: %Credentials{} ,strategy: :identity, info: %Info{email: "dave@dave.com"}}
-
 
 %Auth{} |> 
 fn(x) -> %{x|info: %Info{email: "dave@dave.com"}} end.() |> 
 fn(x) -> %{x|strategy: :identity} end.() |> 
 fn(x) -> %{x|credentials: %Credentials{}} end.() 
- 
 
 %Auth{} |> Map.merge(%{strategy: :identity})
 
@@ -19,11 +16,4 @@ def with_session(conn) do
       |> Plug.Conn.fetch_params()
 end
 
-
-
-
-
-
-
-
-
+Repo.all(from u in User, where: u.id > 1, select: u.dob)
