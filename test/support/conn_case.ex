@@ -27,18 +27,58 @@ defmodule College.ConnCase do
 
       import College.Router.Helpers
 
+      alias College.Helpers
+
+      use ExUnit.Case, async: true
+      use Plug.Test
+      
       # The default endpoint for testing
       @endpoint College.Endpoint
     end
   end
 
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(College.Repo)
+  #  setup %{conn: conn,  } = config do
+  #    if username = config[:login_as] do
+  #
+  #      #todo: write code to insert into database 
+  #      #user =  Helpers.insert_user(username: username)
+  #      #conn = Plug.Conn.assign(conn, :current_user, user)
+  #
+  #      alias Ueberauth.Auth
+  #      alias Auth.Info
+  #      alias Auth.Extra
+  #      alias Auth.Credentials
+  #
+  #      user = %Auth{credentials: %Credentials{} ,strategy: :identity, info: %Info{email: username}, uid:  username }
+  #      {:ok, conn: conn, user: user}
+  #    else
+  #      :ok
+  #    end
+  #  end
 
-    unless tags[:async] do
+
+  def build_user(conn, username \\ "foo@bar.com" ) do
+    alias Ueberauth.Auth
+    alias Auth.Info
+    alias Auth.Extra
+    alias Auth.Credentials
+    user = %Auth{credentials: %Credentials{}, strategy: :identity, info: %Info{email: username}, uid:  username}
+    Plug.Test.init_test_session(conn, [current_user: user])
+    #IO.inspect(ret)
+  end
+  
+  setup config do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(College.Repo)
+    #IO.puts(inspect(tags))
+    unless config[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(College.Repo, {:shared, self()})
     end
-
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    conn = Phoenix.ConnTest.build_conn()
+    case config[:login_as] do
+      nil -> {:ok, conn: build_user(conn)}
+      username ->
+	{:ok, conn: build_user(conn,username)}
+    end
   end
+
 end
