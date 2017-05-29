@@ -5,7 +5,7 @@ defmodule College.Helpers do
     alias College.Course
     alias College.UserCourse
     import Ecto.Query
-
+    
     def insert_user(attrs \\ %{}) do
         changes = Dict.merge(%{
             name: "Some User",
@@ -17,6 +17,7 @@ defmodule College.Helpers do
             surname: "ds",
             age: 40,
             location: "stoke",
+            dob: Ecto.Date.cast("1985-01-01")       , 
             photo: "dsasd"
         }, attrs)
     %User{}

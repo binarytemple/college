@@ -52,6 +52,20 @@ defmodule College.Web do
       import College.Router.Helpers
       import College.ErrorHelpers
       import College.Gettext
+      import Plug.Conn
+      
+      def display_banner?(conn) do
+        case {conn.path_info,  get_session(conn, :current_user)} do
+          {["auth"|_] , _ } -> false
+          {_, user} when user != nil  -> false
+          _  -> true
+        end
+      end
+      
+      def current_locale(conn) do 
+        Gettext.get_locale(College.Gettext)
+      end
+
     end
   end
 

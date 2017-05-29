@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,43 +8,69 @@
     <meta name="author" content="">
 
     <title>Hello College!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-  </head>
+    <link rel="stylesheet" href='<%= static_path(@conn, "/css/app.css") %>'>
+</head>
 
-  <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
+<body>
+<div class="container">
+    <header class="header">
+        <nav role="navigation" class="navbar navbar-default">
+            <div class="btn-group"">
+                <a href="<%= page_path @conn, :index %>" class="btn btn-default">Home</a>
 
-<%= if assigns[:current_user] do %> 
-<p>Welcome, <%= @current_user.name %>!</p> 
-<img src="<%= @current_user.avatar %>" class="img-circle"/> 
-<%= link "Logout", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-danger" %> 
-<%= else %> 
-<a class="btn btn-primary btn-lg" href="/auth/identity"> 
-<i class="fa fa-user"></i> 
-Sign in or sign up. 
-</a> 
-<%= end %>
-
-
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://binarytemple.co.uk">Binarytemple</a></li>
-          </ul>
+               </div>
+                <div class="btn-group" id="dropdown1">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    Admin menu
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="<%= artefact_path @conn, :index %>">Artefacts</a></li>
+                    <li><a href="<%= course_path @conn, :index %>">Courses</a></li>
+                    <li><a href="<%= credentials_path @conn, :index %>">Credentials</a></li>
+                    <li><a href="<%= exhibition_path @conn, :index %>">Exhibitions</a></li>
+                    <li><a href="<%= user_path @conn, :index %>">Users</a></li>
+                    <li><a href="<%= exhibition_user_path @conn, :index %>">Exhibition-Users</a></li>
+                    <li><a href="<%= user_course_path @conn, :index %>">Users-Courses</a></li>
+                </ul>
+            </div>
+            <div class="btn-group" id="dropdown2">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    API links
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li><a class="btn btn-default" href="<%= user_search_path @conn, :index %>">User Search
+                        (endpoint)</a></li>
+                </ul>
+                <%= if (! assigns[:current_user] ) && display_banner?(@conn) do %>
+                <a class="btn btn-default btn" href="/auth/identity">Sign in</a>
+                <%= end %>
+            </div>
+            <div class="btn-group">
+                <%= if assigns[:current_user] do %>
+                <%= link "Logout",
+                to: auth_path(@conn, :delete),
+                method: :delete,
+                class: "btn btn-primary btn" %>
+                <%= end %>
+            </div>
         </nav>
-        <span class="logo"></span>
-      </header>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-
-
-      <main role="main">
+    </header>
+    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <main role="main">
         <%= render @view_module, @view_template, assigns %>
-      </main>
+    </main>
+    <div id="footer">
+       Current locale : <%= current_locale(@conn) %> 
+    </div>
+</div> <!-- /container -->
+<script src='<%= static_path(@conn, "/js/app.js") %>'></script>
 
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-  </body>
+</body>
 </html>

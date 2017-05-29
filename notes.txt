@@ -1,0 +1,29 @@
+
+%Auth{credentials: %Credentials{} ,strategy: :identity, info: %Info{email: "dave@dave.com"}}
+
+
+%Auth{} |> 
+fn(x) -> %{x|info: %Info{email: "dave@dave.com"}} end.() |> 
+fn(x) -> %{x|strategy: :identity} end.() |> 
+fn(x) -> %{x|credentials: %Credentials{}} end.() 
+ 
+
+%Auth{} |> Map.merge(%{strategy: :identity})
+
+def with_session(conn) do
+    session_opts = Plug.Session.init(store: :cookie, key: "_app",
+      encryption_salt: "abc", signing_salt: "abc")
+      conn |> Map.put(:secret_key_base, String.duplicate("abcdefgh", 8))
+      |> Plug.Session.call(session_opts)
+      |> Plug.Conn.fetch_session()
+      |> Plug.Conn.fetch_params()
+end
+
+
+
+
+
+
+
+
+

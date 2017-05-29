@@ -12,12 +12,12 @@ defmodule College.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug UserSession
+    plug College.LocalePlug
   end
 
   pipeline :user_authentication do
     plug UserAuthentication
   end
-
   
   pipeline :api do
     plug :accepts, ["json"]

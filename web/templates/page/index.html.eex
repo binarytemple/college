@@ -1,5 +1,5 @@
-
 <div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: @name %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+  <h2><%= gettext "Welcome to %{identity}", identity: @identity %></h2>
+  <%= gettext "%{intro_blurb}", intro_blurb: "This is a web registration system for college admission" %>
+  </p>
 </div>
