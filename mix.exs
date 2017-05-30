@@ -73,9 +73,10 @@ defmodule College.Mixfile do
       {:ueberauth_facebook  , "~> 0.6.0"               } ,
       {:ueberauth_google    , "~> 0.5.0"               } ,
       {:ueberauth_github    , "~> 0.4.1"               } ,
+      {:comeonin            , "~> 3.0.2"               } ,
 
 
-      #{:mix_test_watch      , "~> 0.3"                                    , only: :text},
+      #{:mix_test_watch      , "~> 0.3" , only: :text},
    ]
   end
 

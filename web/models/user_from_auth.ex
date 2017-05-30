@@ -39,7 +39,7 @@ defmodule UserFromAuth do
     {:error, "Password required"}
   end
   defp authenticate_pass(%{uid: uid, password: pw }) do
-    :ok
+      
   end
   defp authenticate_pass(_), do: {:error, "Bad auth"}
 end

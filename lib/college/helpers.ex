@@ -6,6 +6,16 @@ defmodule College.Helpers do
     alias College.UserCourse
     import Ecto.Query
     
+    def validate_user(uid,pass_to_check) do
+      user = Repo.get_by(User, email: uid)
+      nil_or_val = fn nil -> {:error} ; v -> {:ok,v} end
+
+      with {:ok, %{:password => password}} <- nil_or_val.( Repo.get_by(User, email: uid) ),
+           {:ok,hashed_password}  <- nil_or_val.(password) , 
+           r <- Comeonin.Bcrypt.checkpw(pass_to_check, hashed_password), 
+           do: r
+    end
+    
     def insert_user(attrs \\ %{}) do
         changes = Dict.merge(%{
             name: "Some User",

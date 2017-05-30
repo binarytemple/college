@@ -50,6 +50,8 @@ defmodule College.Router do
     resources "/exhibitions_users", ExhibitionUserController
     resources "/user_courses", UserCourseController
     resources "/users", UserController
+    get "/users/:id/show_edit_password",     UserController, :show_edit_password
+    put "/users/:id/save_edit_password",     UserController, :save_edit_password
   end
 
 end

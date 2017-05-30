@@ -30,7 +30,6 @@ defmodule College.UserController do
 
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
-
     case Repo.insert(changeset) do
       {:ok, _user} ->
         conn
@@ -45,6 +44,37 @@ defmodule College.UserController do
     user = Repo.get!(User, id)
     render(conn, "show.html", user: user)
   end
+
+  def show_edit_password(conn, %{"id" => id}) do
+    user      = Repo.get!(User, id)
+    changeset = Ecto.Changeset.change(user)
+    render(conn, "show_edit_password.html", changeset: changeset)
+  end
+
+  def save_edit_password(conn, %{"id" => id, "user" => password_params}) do
+    import Ecto.Changeset
+
+    user      = Repo.get!(User, id)
+    req       = [:password_supplied,:password_supplied_confirmation]
+
+    #IO.inspect(password_params)
+    changeset = cast(user, password_params, req)
+      |> validate_required(req) 
+      |> validate_confirmation(:password_supplied, message: "does not match password") 
+      |> cast( %{:password => Comeonin.Bcrypt.hashpwsalt(password_params["password_supplied"])}, [:password] )
+
+    case Repo.update(changeset) do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "User password update successfully.")
+        |> redirect(to: user_path(conn, :show, user))
+      {:error, changeset} ->
+        #render(conn, "confirm_.html", changeset: changeset)
+        render(conn, "show_edit_password.html", user: user, changeset: changeset)
+    end
+
+  end
+
 
   def edit(conn, %{"id" => id}) do
     user = Repo.get!(User, id)

@@ -3,10 +3,7 @@ defmodule College.Credentials do
 
   schema "credentials" do
     field :strategy, :string
-    field :email, :string
-    field :password, :string
     field :token1, :string
-
     timestamps()
   end
 
