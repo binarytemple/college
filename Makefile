@@ -10,5 +10,5 @@ migrate:
 migrate_test:
 	MIX_ENV=test mix ecto.migrate
 
-seed:
-	mix run priv/repo/seeds.exs
+dev-seed: migrate
+	mix run priv/repo/dev-seeds.exs

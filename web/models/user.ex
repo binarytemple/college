@@ -12,6 +12,9 @@ defmodule College.User do
     field :fulltext_name, :string
     field :location, :string
     field :photo, :string
+    field :password, :string
+    field :password_supplied, :string, virtual: true
+    field :password_supplied_confirmation, :string, virtual: true
     field :dist, :float, virtual: true
 
     timestamps()
@@ -31,4 +34,13 @@ defmodule College.User do
     |> unique_constraint(:email)
     |> validate_confirmation(:email, message: "does not match email") 
   end
+
+  #def edit_password_changeset(struct, params \\ %{}) do
+  #  fields = [ :password_supplied , :password_supplied_confirmation ]
+  #  struct
+  #  |> cast(params,fields )
+  #  |> validate_required(fields)
+  #  |> validate_confirmation(:password_supplied, message: "does not match password") 
+  #end
+
 end

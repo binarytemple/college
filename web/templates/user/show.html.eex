@@ -45,4 +45,5 @@
 </ul>
 
 <%= link "Edit", to: user_path(@conn, :edit, @user) %>
+<%= link "Edit password", to: user_path(@conn, :show_edit_password, @user), class: "btn btn-default btn-xs" %>
 <%= link "Back", to: user_path(@conn, :index) %>
