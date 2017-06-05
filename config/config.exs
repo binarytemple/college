@@ -34,9 +34,19 @@ config :ueberauth, Ueberauth,
         uid_field: :email,
         nickname_field: :email,
         ] },
-    facebook: { Ueberauth.Strategy.Facebook, [] },
+    facebook: { Ueberauth.Strategy.Facebook, [
+            default_scope: "email,public_profile,manage_pages,publish_pages"
+      ] },
     github: { Ueberauth.Strategy.Github, [] },
-    google: { Ueberauth.Strategy.Google, [] },
+    google: { Ueberauth.Strategy.Google, 
+        [
+          #default_scope: "emails profile plus.me",
+          default_scope: "profile",
+          #hd: "example.com", 
+          approval_prompt: "force", 
+          access_type: "offline"
+      ]
+    },
   ]
 
 #config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
@@ -47,6 +57,27 @@ config :ueberauth, Ueberauth,
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: System.get_env("GITHUB_CLIENT_ID"),
   client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+
+
+config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
+  client_id: System.get_env("FACEBOOK_CLIENT_ID"),
+  client_secret: System.get_env("FACEBOOK_CLIENT_SECRET")
+
+config :ueberauth, Ueberauth.Strategy.Google.OAuth,
+  client_id: System.get_env("GOOGLE_CLIENT_ID"),
+  client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
+
+
+#To make API calls, it is necessary to configure your Stripe secret key (and optional platform client id if you are using Stripe Connect):
+
+
+config :stripity_stripe, secret_key: System.get_env("STRIPE_SECRET_KEY")
+
+config :stripity_stripe, platform_client_id: System.get_env("STRIPE_CLIENT_ID")
+
+
+
+
 #
 #config :ueberauth, Ueberauth.Strategy.Google.OAuth,
 #  client_id: System.get_env("GOOGLE_CLIENT_ID"),

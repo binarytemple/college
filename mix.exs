@@ -40,6 +40,7 @@ defmodule College.Mixfile do
       :ueberauth_facebook ,
       :ueberauth_google   , 
       :ueberauth_github   ,
+      :stripity_stripe    , 
     ]]
   end
 
@@ -74,8 +75,7 @@ defmodule College.Mixfile do
       {:ueberauth_google    , "~> 0.5.0"               } ,
       {:ueberauth_github    , "~> 0.4.1"               } ,
       {:comeonin            , "~> 3.0.2"               } ,
-
-
+      {:stripity_stripe     , ">= 2.0.0-alpha.8"       } ,
       #{:mix_test_watch      , "~> 0.3" , only: :text},
    ]
   end

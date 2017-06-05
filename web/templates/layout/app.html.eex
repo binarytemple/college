@@ -44,11 +44,22 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li><a class="btn btn-default" href="<%= user_search_path @conn, :index %>">User Search
-                        (endpoint)</a></li>
+                  <li>
+                  <%= link "user search", 
+                  to: user_search_path(@conn, :index), 
+                  class: "btn btn-primary btn" %>
+                    </li>
                 </ul>
                 <%= if (! assigns[:current_user] ) && display_banner?(@conn) do %>
-                <a class="btn btn-default btn" href="/auth/identity">Sign in</a>
+                  <%= link "Sign in", 
+                    to: auth_path(@conn, :request, :identity), 
+                    class: "btn btn-primary btn" %>
+                  <%= link "Sign in (FB)", 
+                    to: auth_path(@conn, :request, :facebook), 
+                    class: "btn btn-primary btn" %>
+                  <%= link "Sign in (Google)", 
+                    to: auth_path(@conn, :request, :google), 
+                    class: "btn btn-primary btn" %>
                 <%= end %>
             </div>
             <div class="btn-group">
