@@ -32,7 +32,7 @@ defmodule College.AuthController do
         |> put_flash(:info, "Successfully authenticated.")
         |> put_session(:current_user, user)
 	|> IO.inspect
-        |> redirect(to: "/")
+        |> redirect(to: "/admin")
       {:error, reason} ->
         conn
         |> put_flash(:error, reason)

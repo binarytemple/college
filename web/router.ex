@@ -39,10 +39,13 @@ defmodule College.Router do
   scope "/", College do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
+    get "/artefacts", PageController, :artefacts
+    get "/show_artefact", PageController, :show_artefact
+    get "/admin", PageController, :admin_index
   end
 
   scope "/admin", College do
-    pipe_through [:browser, :user_authentication] # Use the default browser stack
+    pipe_through [:user_authentication,:browser  ] # Use the default browser stack
     resources "/artefacts", ArtefactController
     resources "/courses", CourseController
     resources "/credentials", CredentialsController

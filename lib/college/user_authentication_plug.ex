@@ -6,6 +6,7 @@ defmodule College.UserAuthentication do
   def authenticated?(conn) do
     # Implement authentication logic here, e.g. check auth headers,
     # session creds, etc.
+    conn = fetch_session(conn)
     case get_session(conn, :current_user) do
       nil -> false
       _ -> true

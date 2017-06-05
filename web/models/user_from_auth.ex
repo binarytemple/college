@@ -6,10 +6,11 @@ defmodule UserFromAuth do
   alias Ueberauth.Auth
 
   def find_or_create(%Auth{provider: :identity} = auth) do
+    IO.inspect(auth)
     case authenticate_pass(%{ uid: auth.uid, password: auth.credentials.other.password}) do
-      :ok ->
+      true ->
         {:ok, basic_info(auth)}
-      {:error, reason} -> {:error, reason}
+      false  -> {:error, "failed to authenticate"}
     end
   end
 
@@ -38,8 +39,8 @@ defmodule UserFromAuth do
   defp authenticate_pass(%{password: ""}) do
     {:error, "Password required"}
   end
-  defp authenticate_pass(%{uid: uid, password: pw }) do
-      
+  defp authenticate_pass(%{uid: uid, password: password}) do
+    College.Helpers.validate_user(uid,password)
   end
   defp authenticate_pass(_), do: {:error, "Bad auth"}
 end
